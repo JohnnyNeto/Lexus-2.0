@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cadastro Aluno</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: white;
+    }
+
+    .container {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .left {
+      background-color: #a257af;
+      color: white;
+      padding: 2rem;
+      width: 40%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 1.5rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .left h2 {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 2rem;
+      color: #5d0074;
+      text-align: center;
+    }
+
+    .form-group {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      position: absolute;
+      top: -0.8rem;
+      left: 1rem;
+      background-color: #a257af;
+      padding: 0 0.5rem;
+      font-size: 0.85rem;
+      color: white;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: 3px solid #5d0074;
+      border-radius: 2rem;
+      font-size: 1rem;
+      background-color: white;
+      color: #5d0074;
+      outline: none;
+    }
+
+    .submit-btn {
+      padding: 0.7rem 2rem;
+      background-color: white;
+      color: #5d0074;
+      border: none;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      align-self: center;
+      margin-top: 1rem;
+    }
+
+    .right {
+      width: 60%;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .right img {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 20px;
+    }
+
+    .caption {
+      font-size: 0.8rem;
+      text-align: right;
+      margin-top: 0.3rem;
+      color: #555;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .left, .right {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="left">
+      <div class="close-btn">X</div>
+      <h2>Aluno</h2>
+
+      <div class="form-group">
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" name="nome" />
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" />
+      </div>
+
+      <div class="form-group">
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" name="senha" />
+      </div>
+
+      <div class="form-group">
+        <label for="codigo">Código da Turma</label>
+        <input type="text" id="codigo" name="codigo" />
+      </div>
+
+      <button class="submit-btn" onclick="window.location.href='home.html'">Entrar</button>
+
+    </div>
+
+    <div class="right">
+      <img src="images/ilustra-index.png" alt="Ilustração Lexus" />
+      <div class="caption">Ilustração da tela inicial<br><small>Lexus 2024</small></div>
+    </div>
+  </div>
+</body>
+</html>

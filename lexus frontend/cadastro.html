@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cadastro - Lexus</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: white;
+    }
+
+    .container {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .left {
+      background-color: #a257af;
+      color: white;
+      padding: 2rem;
+      width: 40%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 1.5rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .left h2 {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 2rem;
+      color: #5d0074;
+    }
+
+    .radio-box {
+      background-color: #5d0074;
+      padding: 2rem;
+      border-radius: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      align-items: flex-start;
+      margin-bottom: 2rem;
+    }
+
+    .radio-box label {
+      display: flex;
+      align-items: center;
+      font-size: 1.2rem;
+      gap: 0.5rem;
+    }
+
+    .radio-box input[type="radio"] {
+      accent-color: #990e86;
+      transform: scale(1.3);
+    }
+
+    .continue-btn {
+      padding: 0.7rem 2rem;
+      background-color: white;
+      color: #5d0074;
+      border: none;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      align-self: center;
+    }
+
+    .right {
+      width: 60%;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .right img {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 20px;
+    }
+
+    .caption {
+      font-size: 0.8rem;
+      text-align: right;
+      margin-top: 0.3rem;
+      color: #555;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .left, .right {
+        width: 100%;
+        text-align: center;
+      }
+
+      .radio-box {
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="left">
+      <div class="close-btn">X</div>
+      <h2>Cadastro</h2>
+
+      <div class="radio-box">
+        <label><input type="radio" name="perfil" value="professor" /> Professor</label>
+        <label><input type="radio" name="perfil" value="aluno" /> Aluno</label>
+      </div>
+
+      <button class="continue-btn" onclick="redirecionar()">Continuar</button>
+    </div>
+
+    <div class="right">
+      <img src="images/ilustra-index.png" alt="Ilustração Lexus" />
+      <div class="caption">Ilustração Lexus<br><small>Imagem local</small></div>
+    </div>
+  </div>
+
+  <script>
+    function redirecionar() {
+      const perfilSelecionado = document.querySelector('input[name="perfil"]:checked');
+      if (!perfilSelecionado) {
+        alert("Por favor, selecione uma opção (Professor ou Aluno).");
+        return;
+      }
+
+      const destino = perfilSelecionado.value === 'professor' 
+        ? 'cadastro-professor.html' 
+        : 'cadastro-aluno.html';
+
+      window.location.href = destino;
+    }
+  </script>
+</body>
+</html>
+

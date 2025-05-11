@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lexus - Login</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff;
+      color: #333;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    .left, .right {
+      flex: 1;
+      padding: 2rem;
+    }
+
+    .left h1 {
+      font-size: 1.3rem;
+      color: #990e86;
+      margin-bottom: 0.2rem;
+    }
+
+    .left h1 span {
+      display: block;
+      font-size: 3rem;
+      color: #206580;
+      font-family: 'Georgia', serif;
+    }
+
+    .left p {
+      font-size: 1rem;
+      line-height: 1.5;
+      margin-top: 1rem;
+      max-width: 400px;
+    }
+
+    .left p span {
+      display: block;
+      color: #3498db;
+      font-weight: 600;
+      margin-top: 0.5rem;
+    }
+
+    .buttons {
+      margin-top: 2rem;
+    }
+
+    .buttons button {
+      padding: 0.7rem 1.5rem;
+      border: none;
+      border-radius: 20px;
+      margin-right: 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .btn-cadastrar {
+      background-color: #e6b8e6;
+      color: #000;
+    }
+
+    .btn-logar {
+      background-color: #5d0074;
+      color: white;
+    }
+
+    .right img {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 20px;
+    }
+
+    .caption {
+      font-size: 0.8rem;
+      text-align: right;
+      margin-top: 0.3rem;
+      color: #555;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .left, .right {
+        padding: 1rem;
+        text-align: center;
+      }
+
+      .buttons button {
+        margin-bottom: 1rem;
+        width: 100%;
+      }
+
+      .caption {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="left">
+      <h1>CONECTE-SE AO PROJETO<br><span>Lexus</span></h1>
+      <p>
+        Vá além dos aspectos normativos da linguagem, produza textos e compartilhe com a turma!
+        <span>Expresse sua criatividade e questione o mundo.</span>
+      </p>
+      <div class="buttons">
+        <button class="btn-cadastrar" onclick="window.location.href='cadastro.html'">Cadastrar-se</button>
+        <button class="btn-logar" onclick="window.location.href='login.html'">Logar</button>
+      </div>
+    </div>
+
+    <div class="right">
+      <img src="images/ilustra-index.png" alt="Ilustração Lexus" />
+      <div class="caption">Ilustração Lexus<br><small>Imagem local</small></div>
+    </div>
+  </div>
+</body>
+</html>

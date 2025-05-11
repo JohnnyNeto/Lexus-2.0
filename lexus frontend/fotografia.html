@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Lexus - Produção</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: white;
+    }
+
+    header {
+      background-color: #215F70;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 40px;
+      position: relative;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    nav {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    nav a {
+      color: white;
+      margin-left: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      position: relative;
+      cursor: pointer;
+    }
+
+    nav a.perfil {
+      background: white;
+      color: #215F70;
+      padding: 6px 20px;
+      border-radius: 20px;
+    }
+
+    .dropdown {
+      position: absolute;
+      top: 50px;
+      background-color: #25687f;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      display: none;
+      flex-direction: column;
+      padding: 0.5rem 0;
+      z-index: 10;
+      left: 100px; /* ajuste conforme necessidade */
+    }
+
+    .dropdown a {
+      color: white;
+      padding: 0.5rem 1.5rem;
+      text-decoration: none;
+      display: block;
+      transition: background 0.2s;
+    }
+
+    .dropdown a:hover {
+      background-color: #1d5b72;
+    }
+
+    .main {
+      display: flex;
+      padding: 40px;
+      justify-content: space-between;
+    }
+
+    .left {
+      width: 25%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: left;
+    }
+
+    .left img {
+      width: 120px;
+      margin-bottom: 20px;
+    }
+
+    .left h1 {
+      color: #670076;
+      margin: 0;
+      font-size: 24px;
+    }
+
+    .left h2 {
+      color: #215F70;
+      font-size: 16px;
+      margin: 5px 0;
+    }
+
+    .left small {
+      color: #215F70;
+      font-size: 12px;
+    }
+
+    .center {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .center input,
+    .center textarea {
+      background-color: #D9D9D9;
+      border: 2px solid #670076;
+      border-radius: 20px;
+      padding: 15px 20px;
+      font-size: 14px;
+      color: #670076;
+      outline: none;
+      box-shadow: 3px 3px 5px rgba(0,0,0,0.15);
+    }
+
+    .center input::placeholder,
+    .center textarea::placeholder {
+      color: #670076;
+    }
+
+    .center textarea {
+      height: 250px;
+      resize: none;
+    }
+
+    .right {
+      width: 20%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .upload-box {
+      background: #D9D9D9;
+      border: 2px solid #670076;
+      border-radius: 20px;
+      width: 180px;
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      color: #670076;
+      box-shadow: 4px 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .send-button {
+      margin-top: 30px;
+      padding: 10px 30px;
+      border: 2px solid #670076;
+      border-radius: 30px;
+      background: white;
+      color: #670076;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+    }
+
+    .send-button:hover {
+      background: #f0e0f8;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">Lexus</div>
+    <nav>
+      <a href="home.html">Home</a>
+      <a id="produzir-btn">Produzir ▼</a>
+      <a href="chat.html">Chat</a>
+      <a class="perfil" href="#">Perfil</a>
+
+      <div class="dropdown" id="produzir-dropdown">
+        <a href="fotografia.html">Fotografia</a>
+        <a href="#">Podcast</a>
+        <a href="#">Tema Proposto</a>
+      </div>
+    </nav>
+  </header>
+
+  <div class="main">
+    <div class="left">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Idea.svg/120px-Idea.svg.png" alt="Personagem">
+      <h1>Produção</h1>
+      <h2>Temática: <strong>Fotografia</strong></h2>
+      <small>atualidades</small>
+    </div>
+
+    <div class="center">
+      <input type="text" placeholder="Adicione um tema se quiser...">
+      <textarea placeholder="Digite aqui seu texto..."></textarea>
+    </div>
+
+    <div class="right">
+      <div class="upload-box">
+        <span>🖼️+</span>
+      </div>
+      <button class="send-button">Enviar</button>
+    </div>
+  </div>
+
+  <script>
+    const btn = document.getElementById('produzir-btn');
+    const dropdown = document.getElementById('produzir-dropdown');
+
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      dropdown.style.display = dropdown.style.display === 'flex' ? 'none' : 'flex';
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!btn.contains(e.target) && !dropdown.contains(e.target)) {
+        dropdown.style.display = 'none';
+      }
+    });
+  </script>
+
+</body>
+</html>

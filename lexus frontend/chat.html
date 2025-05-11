@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chat - Lexus</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    header {
+      background-color: #0e4a63;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      position: relative;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+
+    .logo span {
+      color: #ccc;
+    }
+
+    nav {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 0.3rem 1rem;
+      border-radius: 20px;
+      position: relative;
+    }
+
+    nav a.active {
+      background-color: #25687f;
+    }
+
+    nav a:hover {
+      background-color: #25687f;
+    }
+
+    .produzir-container {
+      position: relative;
+    }
+
+    .produzir-toggle {
+      cursor: pointer;
+    }
+
+    .produzir-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #25687f;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      z-index: 1000;
+      min-width: 150px;
+    }
+
+    .produzir-menu a {
+      display: block;
+      padding: 0.6rem 1rem;
+      color: white;
+      text-decoration: none;
+    }
+
+    .produzir-menu a:hover {
+      background-color: #1c4d5d;
+    }
+
+    .produzir-container:hover .produzir-menu {
+      display: block;
+    }
+
+    .chat-container {
+      display: flex;
+      height: calc(100vh - 80px);
+      background-color: #c4d6dc;
+    }
+
+    .contacts {
+      width: 220px;
+      background-color: #b0c3cc;
+      padding: 1rem;
+      border-top-left-radius: 20px;
+      border-bottom-left-radius: 20px;
+    }
+
+    .contact {
+      background-color: white;
+      margin-bottom: 0.8rem;
+      padding: 0.6rem 1rem;
+      border-radius: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .contact .badge {
+      background-color: #800080;
+      color: white;
+      border-radius: 50%;
+      padding: 0.3rem 0.6rem;
+      font-size: 0.9rem;
+    }
+
+    .chat-box {
+      flex-grow: 1;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-top-right-radius: 20px;
+      border-bottom-right-radius: 20px;
+    }
+
+    .messages {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding-right: 1rem;
+      overflow-y: auto;
+      height: 100%;
+    }
+
+    .message {
+      max-width: 60%;
+      padding: 0.8rem 1rem;
+      border-radius: 20px;
+      color: white;
+    }
+
+    .message.left {
+      background-color: #0e4a63;
+      align-self: flex-start;
+    }
+
+    .message.right {
+      background-color: #800080;
+      align-self: flex-end;
+      border-bottom-right-radius: 0;
+    }
+
+    .input-box {
+      display: flex;
+      align-items: center;
+      padding-top: 1rem;
+    }
+
+    .input-box input {
+      flex-grow: 1;
+      padding: 0.7rem 1rem;
+      border-radius: 20px;
+      border: none;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    .send-button {
+      background-color: #800080;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      margin-left: 0.7rem;
+      padding: 0.8rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 5px rgba(0,0,0,0.2);
+      font-size: 1.4rem;
+    }
+
+    .send-button:hover {
+      background-color: #6a006a;
+    }
+
+    @media (max-width: 768px) {
+      .chat-container {
+        flex-direction: column;
+      }
+
+      .contacts {
+        width: 100%;
+        display: flex;
+        overflow-x: scroll;
+        gap: 1rem;
+        border-radius: 0;
+      }
+
+      .contact {
+        min-width: 120px;
+      }
+
+      .chat-box {
+        border-radius: 0;
+        padding: 1rem;
+      }
+
+      .produzir-menu {
+        right: 0;
+        left: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo"><span>L</span>exus</div>
+    <nav>
+      <a href="home.html">Home</a>
+
+      <div class="produzir-container">
+        <a class="produzir-toggle">Produzir ▼</a>
+        <div class="produzir-menu">
+          <a href="#">Fotografia</a>
+          <a href="#">Podcast</a>
+          <a href="#">Tema Proposto</a>
+        </div>
+      </div>
+
+      <a href="chat.html" class="active">Chat</a>
+      <a href="#">Perfil</a>
+    </nav>
+  </header>
+
+  <div class="chat-container">
+    <div class="contacts">
+      <div class="contact">George <span class="badge">5</span></div>
+      <div class="contact">Mônica <span class="badge">0</span></div>
+      <div class="contact">Charles <span class="badge">3</span></div>
+      <div class="contact">Paloma <span class="badge">7</span></div>
+      <div class="contact">Oliver <span class="badge">4</span></div>
+    </div>
+
+    <div class="chat-box">
+      <div class="messages">
+        <div class="message right">Olá! Envie sua produção aqui.</div>
+        <div class="message right">Você pode mandar áudio, texto ou imagem.</div>
+        <div class="message left">Tudo bem, estou escrevendo agora.</div>
+        <div class="message left">Vai ser sobre meio ambiente!</div>
+      </div>
+
+      <div class="input-box">
+        <input type="text" placeholder="Digite sua mensagem...">
+        <button class="send-button">→</button>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
