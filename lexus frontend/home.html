@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
@@ -68,10 +68,14 @@
       left: 160px;
     }
 
+    #perfil-dropdown {
+      right: 0;
+      min-width: 240px;
+    }
+
     .dropdown a {
       color: white;
       padding: 0.5rem 1.5rem;
-      border-radius: 0;
       text-decoration: none;
       display: block;
       transition: background 0.2s;
@@ -174,13 +178,15 @@
       <a href="#" class="active">Home</a>
       <a id="produzir-btn">Produzir ▼</a>
       <a href="chat.html">Chat</a>
-      <a href="perfil.html">Perfil</a>
+      <a id="perfil-btn">Perfil ▼</a>
 
       <div class="dropdown" id="produzir-dropdown">
         <a href="fotografia.html">Fotografia</a>
         <a href="#">Podcast</a>
         <a href="#">Tema Proposto</a>
       </div>
+
+      <div class="dropdown" id="perfil-dropdown"></div>
     </nav>
   </header>
 
@@ -200,11 +206,11 @@
           <button>Ver mais</button>
         </div>
       </div>
-      <!-- Fim do exemplo -->
     </div>
   </div>
 
   <script>
+    // Produzir
     const btn = document.getElementById('produzir-btn');
     const dropdown = document.getElementById('produzir-dropdown');
 
@@ -216,6 +222,32 @@
     document.addEventListener('click', function (e) {
       if (!btn.contains(e.target) && !dropdown.contains(e.target)) {
         dropdown.style.display = 'none';
+      }
+    });
+
+    // Perfil
+    const perfilBtn = document.getElementById('perfil-btn');
+    const perfilDropdown = document.getElementById('perfil-dropdown');
+
+    perfilBtn.addEventListener('click', async (e) => {
+      e.preventDefault();
+
+      if (perfilDropdown.innerHTML.trim() === "") {
+        try {
+          const response = await fetch('perfil.html');
+          const html = await response.text();
+          perfilDropdown.innerHTML = html;
+        } catch (err) {
+          perfilDropdown.innerHTML = "<p style='color: white; padding: 1rem;'>Erro ao carregar perfil.</p>";
+        }
+      }
+
+      perfilDropdown.style.display = perfilDropdown.style.display === 'flex' ? 'none' : 'flex';
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!perfilBtn.contains(e.target) && !perfilDropdown.contains(e.target)) {
+        perfilDropdown.style.display = 'none';
       }
     });
   </script>

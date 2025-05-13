@@ -231,30 +231,30 @@
       <div class="produzir-container">
         <a class="produzir-toggle">Produzir ▼</a>
         <div class="produzir-menu">
-          <a href="#">Fotografia</a>
+          <a href="fotografia.html">Fotografia</a>
           <a href="#">Podcast</a>
           <a href="#">Tema Proposto</a>
         </div>
       </div>
 
       <a href="chat.html" class="active">Chat</a>
-      <a href="#">Perfil</a>
+      <a href="perfil.html">Perfil</a>
     </nav>
   </header>
 
   <div class="chat-container">
     <div class="contacts">
-      <div class="contact">George <span class="badge">5</span></div>
+      <div class="contact">George <span class="badge">0</span></div>
       <div class="contact">Mônica <span class="badge">0</span></div>
-      <div class="contact">Charles <span class="badge">3</span></div>
-      <div class="contact">Paloma <span class="badge">7</span></div>
-      <div class="contact">Oliver <span class="badge">4</span></div>
+      <div class="contact">Charles <span class="badge">0</span></div>
+      <div class="contact">Paloma <span class="badge">0</span></div>
+      <div class="contact">Oliver <span class="badge">0</span></div>
     </div>
 
     <div class="chat-box">
       <div class="messages">
         <div class="message right">Olá! Envie sua produção aqui.</div>
-        <div class="message right">Você pode mandar áudio, texto ou imagem.</div>
+        <div class="message right">Você pode mandar texto.</div>
         <div class="message left">Tudo bem, estou escrevendo agora.</div>
         <div class="message left">Vai ser sobre meio ambiente!</div>
       </div>
@@ -265,6 +265,77 @@
       </div>
     </div>
   </div>
+
+  <script>
+  // Armazena os históricos de conversa por nome
+  const conversations = {
+    "George": [
+      { sender: "right", text: "Olá! Envie sua produção aqui." },
+      { sender: "right", text: "Você pode mandar áudio, texto ou imagem." },
+      { sender: "left", text: "Tudo bem, estou escrevendo agora." },
+      { sender: "left", text: "Vai ser sobre meio ambiente!" }
+    ],
+    "Mônica": [],
+    "Charles": [],
+    "Paloma": [],
+    "Oliver": []
+  };
+
+  let currentContact = "George"; // Contato inicial selecionado
+
+  const messagesContainer = document.querySelector(".messages");
+  const input = document.querySelector(".input-box input");
+  const sendButton = document.querySelector(".send-button");
+  const contactElements = document.querySelectorAll(".contact");
+
+  // Função que renderiza as mensagens da conversa atual
+  function renderMessages() {
+    messagesContainer.innerHTML = "";
+    const msgs = conversations[currentContact] || [];
+    msgs.forEach(msg => {
+      const div = document.createElement("div");
+      div.className = `message ${msg.sender}`;
+      div.textContent = msg.text;
+      messagesContainer.appendChild(div);
+    });
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  }
+
+  // Função que envia a mensagem
+  function sendMessage() {
+    const text = input.value.trim();
+    if (!text) return;
+
+    // Adiciona ao array de mensagens
+    conversations[currentContact].push({ sender: "right", text });
+    input.value = "";
+    renderMessages();
+  }
+
+  // Botão enviar
+  sendButton.addEventListener("click", sendMessage);
+
+  // Pressionar Enter para enviar
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") sendMessage();
+  });
+
+  // Clique em um contato para mudar o chat
+  contactElements.forEach(el => {
+    el.addEventListener("click", () => {
+      currentContact = el.textContent.trim().split(" ")[0]; // Pega o nome sem badge
+      renderMessages();
+
+      // Destaque visual no contato atual (opcional)
+      contactElements.forEach(c => c.style.backgroundColor = "white");
+      el.style.backgroundColor = "#deeef2";
+    });
+  });
+
+  // Mostra as mensagens do contato inicial
+  renderMessages();
+</script>
+
 
 </body>
 </html>

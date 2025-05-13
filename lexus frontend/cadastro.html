@@ -27,13 +27,25 @@
       position: relative;
     }
 
-    .close-btn {
+    /* Botão de voltar */
+    .back-btn {
       position: absolute;
       top: 1rem;
       right: 1rem;
-      font-size: 1.5rem;
+      background-color: transparent;
+      border: 2px solid rgb(255, 255, 255);
+      color: white;
+      padding: 0.3rem 0.8rem;
+      border-radius: 5px;
+      font-size: 1rem;
       font-weight: bold;
       cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .back-btn:hover {
+      background-color: white;
+      color: #5d0074;
     }
 
     .left h2 {
@@ -113,13 +125,21 @@
       .radio-box {
         align-items: center;
       }
+
+      .back-btn {
+        top: 0.5rem;
+        right: 0.5rem;
+        padding: 0.4rem 1rem;
+      }
     }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="left">
-      <div class="close-btn">X</div>
+      <!-- Botão de voltar -->
+      <button class="back-btn" onclick="window.location.href='index.html'">X</button>
+
       <h2>Cadastro</h2>
 
       <div class="radio-box">
@@ -132,7 +152,7 @@
 
     <div class="right">
       <img src="images/ilustra-index.png" alt="Ilustração Lexus" />
-      <div class="caption">Ilustração Lexus<br><small>Imagem local</small></div>
+      <div class="caption">JR, Williamsburg<br><small>     JR  2012</small></div>
     </div>
   </div>
 
@@ -153,4 +173,3 @@
   </script>
 </body>
 </html>
-
