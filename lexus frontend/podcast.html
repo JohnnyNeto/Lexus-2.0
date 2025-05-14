@@ -1,0 +1,179 @@
+ <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lexus - Produção Podcast</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: white;
+    }
+
+    header {
+      background-color: #226680;
+      color: white;
+      padding: 10px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .logo span {
+      font-family: 'Georgia', serif;
+      font-style: italic;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .perfil-btn {
+      border: 2px solid white;
+      border-radius: 20px;
+      padding: 5px 15px;
+    }
+
+    main {
+      display: flex;
+      padding: 40px 50px;
+      justify-content: space-between;
+    }
+
+    .left-column {
+      width: 25%;
+      text-align: left;
+    }
+
+    .left-column h1 {
+      font-size: 22px;
+      color: #800080;
+      margin-bottom: 0;
+    }
+
+    .left-column h2 {
+      font-size: 16px;
+      color: #19647e;
+      margin: 5px 0;
+    }
+
+    .left-column p {
+      font-size: 13px;
+      color: #666;
+      margin-top: 0;
+    }
+
+    .left-column img {
+      margin-top: 30px;
+      width: 150px;
+    }
+
+    .center-column {
+      width: 45%;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .center-column input,
+    .center-column textarea {
+      background-color: #d9d9d9;
+      border: 2px solid transparent;
+      border-radius: 20px;
+      padding: 15px;
+      font-size: 14px;
+      color: #4b004b;
+      resize: none;
+      outline: none;
+    }
+
+    .center-column textarea {
+      height: 250px;
+    }
+
+    .right-column {
+      width: 25%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .upload-box {
+      background-color: #d9d9d9;
+      border: 2px solid #800080;
+      border-radius: 30px;
+      width: 160px;
+      height: 160px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 3px 3px 5px rgba(0,0,0,0.2);
+    }
+
+    .upload-box img {
+      width: 48px;
+    }
+
+    button {
+      background-color: white;
+      border: 2px solid #800080;
+      border-radius: 20px;
+      color: #800080;
+      padding: 10px 30px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 3px 3px 5px rgba(0,0,0,0.2);
+    }
+
+    button:hover {
+      background-color: #f3e5f5;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo"><span>L</span>exus</div>
+    <nav>
+      <a href="home.html">Home</a>
+      <a href="">Produzir</a>
+      <a href="chat.html">Chat</a>
+      <a href="#" class="perfil-btn">Perfil</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="left-column">
+      <h1>Produção</h1>
+      <h2>Temática: <span style="color:#19647e;">Podcast</span></h2>
+      <p>atualidades</p>
+      <img src="images/personagem_ideia.png" alt="Personagem com ideia" />
+    </div>
+
+    <div class="center-column">
+      <input type="text" placeholder="Adicione um tema se quiser..." />
+      <textarea placeholder="Digite aqui seu texto..."></textarea>
+    </div>
+
+    <div class="right-column">
+      <div class="upload-box">
+        <img src="video_icon.png" alt="Ícone de vídeo" />
+      </div>
+      <button>Enviar</button>
+    </div>
+  </main>
+</body>
+</html>
