@@ -127,36 +127,32 @@
 <body>
   <div class="container">
     <div class="left">
-      <!-- Botão de voltar -->
-      <button class="back-btn" onclick="window.location.href='index.html'">X</button>
+      <form id="formCadastro">
+        <div class="form-group">
+          <label for="nome">Nome</label>
+          <input type="text" id="nome" name="nome" />
+        </div>
       
-      <h2>Professor</h2>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" />
+        </div>
+      
+        <div class="form-group">
+          <label for="senha">Senha</label>
+          <input type="password" id="senha" name="senha" />
+        </div>
+      
+        <div class="form-group">
+          <label for="confirmar">Confirmar Senha</label>
+          <input type="password" id="confirmar" name="confirmar" />
+        </div>
 
-      <div class="form-group">
-        <label for="nome">Nome</label>
-        <input type="text" id="nome" name="nome" />
-      </div>
-
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" />
-      </div>
-
-      <div class="form-group">
-        <label for="senha">Senha</label>
-        <input type="password" id="senha" name="senha" />
-      </div>
-
-      <div class="form-group">
-        <label for="confirmar">Confirmar Senha</label>
-        <input type="password" id="confirmar" name="confirmar" />
-      </div>
-
-      <button class="submit-btn">Gerar Código</button>
+        <button type="submit" class="submit-btn">Cadastrar e criar Código</button>
+      </form>
     </div>
-
     <div class="right">
-      <img src="images/ilustra-index.png" alt="Cadastro Professor" />
+      <img src="images/ilustra-index.png" alt="Cadastro Aluno" />
       <div class="caption">JR, Williamsburg<br><small>     JR  2012</small></div>
     </div>
   </div>
