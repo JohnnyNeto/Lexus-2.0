@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Chat em Tempo Real</title>
+  <style>
+    body { font-family: Arial; padding: 20px; background: #f5f5f5; }
+    #chat { border: 1px solid #ccc; padding: 10px; height: 300px; overflow-y: scroll; background: #fff; }
+    #mensagem { width: 80%; padding: 10px; }
+    #enviar { padding: 10px; }
+  </style>
+</head>
+<body>
+  <h2>Chat em Tempo Real</h2>
+  <label for="username">Nome de usuário:</label>
+  <input type="text" id="username" placeholder="Digite seu nome" />
+  <button onclick="conectar()">Entrar no chat</button>
+  <br><br>
+
+  <div id="chat"></div>
+  <br>
+  <input type="text" id="mensagem" placeholder="Digite sua mensagem" />
+  <button id="enviar" onclick="enviarMensagem()">Enviar</button>
+
+  <script>
+    let socket;
+    let username;
+
+    function conectar() {
+      username = document.getElementById('username').value.trim();
+      if (!username) {
+        alert("Digite um nome de usuário!");
+        return;
+      }
+
+      socket = new WebSocket(`ws://127.0.0.1:8000/ws/${username}`);
+
+      socket.onopen = function () {
+        adicionarMensagem(`🟢 Conectado como ${username}`);
+        carregarHistorico();
+      };
+
+      socket.onmessage = function (event) {
+        adicionarMensagem(event.data);
+      };
+
+      socket.onclose = function () {
+        adicionarMensagem(`🔴 Conexão encerrada.`);
+      };
+    }
+
+    function enviarMensagem() {
+      const msgInput = document.getElementById("mensagem");
+      const mensagem = msgInput.value.trim();
+      if (mensagem && socket.readyState === WebSocket.OPEN) {
+        socket.send(mensagem);
+        msgInput.value = "";
+      }
+    }
+
+    function adicionarMensagem(texto) {
+      const chat = document.getElementById("chat");
+      const novaMsg = document.createElement("div");
+      novaMsg.textContent = texto;
+      chat.appendChild(novaMsg);
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    function carregarHistorico() {
+      fetch(`http://127.0.0.1:8000/historico/${username}`)
+        .then(response => response.json())
+        .then(data => {
+          data.mensagens.forEach(m => {
+            adicionarMensagem(`🕓 ${m.timestamp} - ${username}: ${m.conteudo}`);
+          });
+        });
+    }
+  </script>
+</body>
+</html>

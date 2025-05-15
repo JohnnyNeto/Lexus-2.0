@@ -183,6 +183,7 @@
 
         if (response.ok) {
           document.getElementById("mensagem").textContent = data.mensagem;
+           window.location.href = 'index.html';
         } else {
           document.getElementById("mensagem").textContent = data.detail;
         }
@@ -192,7 +193,7 @@
         console.error("Erro:", error);
       }
 
-      window.location.href = 'index.html'; // Redireciona para a página inicial
+      // Redireciona para a página inicial
     });
   </script>
 </body>

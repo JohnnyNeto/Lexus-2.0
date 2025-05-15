@@ -70,8 +70,17 @@ class ConnectionManager:
         await websocket.send_text(message)
 
     async def broadcast(self, message: str):
-        for ws in self.active_connections.values():
-            await ws.send_text(message)
+        disconnected_users = []
+        for username, ws in self.active_connections.items():
+            try:
+                await ws.send_text(message)
+            except Exception as e:
+                print(f"Erro ao enviar mensagem para {username}: {e}")
+                disconnected_users.append(username)
+
+        # Remove conexões que falharam
+        for username in disconnected_users:
+            self.disconnect(username)
 
 manager = ConnectionManager()
 
@@ -91,6 +100,7 @@ async def websocket_endpoint(websocket: WebSocket, username: str, db: Session = 
     try:
         while True:
             data = await websocket.receive_text()
+            print(f"Recebido de {username}: {data}")
 
             # Salvar mensagem no banco de dados
             msg = Mensagem(conteudo=data, usuario_id=usuario.id)
@@ -101,8 +111,14 @@ async def websocket_endpoint(websocket: WebSocket, username: str, db: Session = 
             await manager.broadcast(full_message)
 
     except WebSocketDisconnect:
+        print(f"{username} desconectado.")
         manager.disconnect(username)
         await manager.broadcast(f"{username} saiu do chat.")
+
+    except Exception as e:
+        print(f"Erro no WebSocket de {username}: {e}")
+        manager.disconnect(username)
+        await manager.broadcast(f"{username} teve um erro e saiu do chat.")
 
 # Endpoint para ver histórico de mensagens
 @app.get("/historico/{username}")

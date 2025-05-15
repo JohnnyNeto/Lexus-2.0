@@ -125,8 +125,8 @@
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="left">
+  <section class="container">
+    <section class="left">
       <h2>Professor</h2>
       <form id="formCadastro">
         <div class="form-group">
@@ -151,22 +151,20 @@
 
         <button type="submit" class="submit-btn">Cadastrar</button>
       </form>
-    </div>
+    </section>
     <div class="right">
       <img src="images/ilustra-index.png" alt="Cadastro Aluno" />
       <div class="caption">JR, Williamsburg<br><small>     JR  2012</small></div>
     </div>
-  </div>
+  </section>
 
 
-<script>
+  <script>
     document.getElementById('formCadastro').addEventListener('submit', async function(e) {
       e.preventDefault();
-
       const nome = document.getElementById('nome').value;
       const email = document.getElementById('email').value;
       const senha = document.getElementById('senha').value;
-
       try {
         const response = await fetch("http://127.0.0.1:8000/cadastrar", {
           method: "POST",
@@ -175,22 +173,22 @@
           },
           body: JSON.stringify({ nome, email, senha, cargo: "professor" })
         });
-
         const data = await response.json();
 
-        if (response.ok) {
-          document.getElementById("mensagem").textContent = data.mensagem;
-        } else {
-          document.getElementById("mensagem").textContent = data.detail;
-        }
-
-      } catch (error) {
-        document.getElementById("mensagem").textContent = "Erro ao cadastrar.";
-        console.error("Erro:", error);
+      if (response.ok) {
+        document.getElementById('mensagem').textContent = data.mensagem;
+        // redireciona após 1 segundo
+        setTimeout(() => {
+          window.location.href = 'home.html';
+        }, 1000);
+      } else {
+        document.getElementById('mensagem').textContent = data.detail || "Erro ao fazer login.";
       }
-
-      window.location.href = 'index.html'; // Redireciona para a página inicial
-    });
+    } catch (error) {
+      console.error('Erro:', error);
+      document.getElementById('mensagem').textContent = "Erro de conexão com o servidor.";
+    }
+  });
   </script>
 </body>
 </html>
