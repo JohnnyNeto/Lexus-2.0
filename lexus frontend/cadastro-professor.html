@@ -157,5 +157,40 @@
       <div class="caption">JR, Williamsburg<br><small>     JR  2012</small></div>
     </div>
   </div>
+
+
+<script>
+    document.getElementById('formCadastro').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const nome = document.getElementById('nome').value;
+      const email = document.getElementById('email').value;
+      const senha = document.getElementById('senha').value;
+
+      try {
+        const response = await fetch("http://127.0.0.1:8000/cadastrar", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ nome, email, senha, cargo: "professor" })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          document.getElementById("mensagem").textContent = data.mensagem;
+        } else {
+          document.getElementById("mensagem").textContent = data.detail;
+        }
+
+      } catch (error) {
+        document.getElementById("mensagem").textContent = "Erro ao cadastrar.";
+        console.error("Erro:", error);
+      }
+
+      window.location.href = 'index.html'; // Redireciona para a página inicial
+    });
+  </script>
 </body>
 </html>

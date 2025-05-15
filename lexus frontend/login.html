@@ -120,37 +120,68 @@
 <body>
   <div class="container">
     <div class="left">
-      <div class="close-btn" onclick="window.location.href='index.html';">X</div>
-      <h2>Login</h2>
+      <form id="formLogin">
 
-      <div class="form-group">
-        <label for="nome">Nome</label>
-        <input type="text" id="nome" name="nome" />
-      </div>
+        <div class="form-group">
+          <label for="name">Nome</label>
+          <input type="name" id="nome" name="name" required />
+        </div>
 
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" />
-      </div>
-
-      <div class="form-group">
-        <label for="senha">Senha</label>
-        <input type="password" id="senha" name="senha" />
-      </div>
-
-      <div class="form-group">
-        <label for="codigo">Código da Turma</label>
-        <input type="text" id="codigo" name="codigo" />
-      </div>
-
-      <button class="submit-btn" onclick="window.location.href='home.html'">Entrar</button>
-
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+      
+        <div class="form-group">
+          <label for="senha">Senha</label>
+          <input type="password" id="senha" name="senha" required />
+        </div>
+      
+        <button class="submit-btn" type="submit">Entrar</button>
+      </form>
     </div>
+
+    <p id="mensagem" style="text-align:center; margin-top:1rem;"></p>
 
     <div class="right">
       <img src="images/ilustra-index.png" alt="Ilustração Lexus" />
       <div class="caption">JR, Williamsburg<br><small>JR  2012</small></div>
     </div>
   </div>
+
+
+  <script>
+  document.getElementById('formLogin').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    const nome = document.getElementById('nome').value;
+    const email = document.getElementById('email').value;
+    const senha = document.getElementById('senha').value;
+
+    try {
+      const response = await fetch('http://127.0.0.1:8000/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({nome, email, senha })
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        document.getElementById('mensagem').textContent = data.mensagem;
+        // redireciona após 1 segundo
+        setTimeout(() => {
+          window.location.href = 'home.html';
+        }, 1000);
+      } else {
+        document.getElementById('mensagem').textContent = data.detail || "Erro ao fazer login.";
+      }
+    } catch (error) {
+      console.error('Erro:', error);
+      document.getElementById('mensagem').textContent = "Erro de conexão com o servidor.";
+    }
+  });
+</script>
 </body>
 </html>
