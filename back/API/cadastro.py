@@ -1,5 +1,5 @@
 from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel, EmailStr, validator
+from pydantic import BaseModel, EmailStr, field_validator
 from fastapi.middleware.cors import CORSMiddleware
 from typing import Literal
 import json
@@ -27,7 +27,7 @@ class Usuario(BaseModel):
     senha: str
     cargo: Literal['professor', 'aluno']
 
-    @validator("senha")
+    @field_validator("senha")
     def senha_minima(cls, v):
         if len(v) < 6:
             raise ValueError("A senha deve ter pelo menos 6 caracteres.")
