@@ -49,6 +49,8 @@ def salvar_dados(dados):
 # Rota para cadastrar um usuário
 @app.post("/cadastrar")
 def cadastrar_usuario(usuario: Usuario):
+    print(usuario)
+
     dados = carregar_dados()
 
     # Verificar se e-mail já está cadastrado
