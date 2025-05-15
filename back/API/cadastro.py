@@ -64,3 +64,22 @@ def cadastrar_usuario(usuario: Usuario):
 @app.get("/usuarios")
 def listar_usuarios():
     return carregar_dados()
+
+# Modelo para login
+class LoginRequest(BaseModel):
+    nome: str
+    email: EmailStr
+    senha: str
+
+# Rota de login
+@app.post("/login")
+def login(usuario: LoginRequest):
+    dados = carregar_dados()
+
+    # Buscar usuário por email
+    for u in dados:
+        if u['email'] == usuario.email and u['senha'] == usuario.senha and u['nome'] == usuario.nome:
+            return {"mensagem": f"Login bem-sucedido. Bem-vindo, {u['nome']}!", "cargo": u['cargo']}
+
+    # Se não encontrar correspondência
+    raise HTTPException(status_code=401, detail="Email ou senha inválidos.")
